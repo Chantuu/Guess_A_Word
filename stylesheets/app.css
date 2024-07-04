@@ -1,0 +1,22 @@
+.main {
+    height: 80vh;
+}
+
+.footer {
+    background-color: #000500;
+    height: 20vh;
+}
+
+.footerParagraph {
+    color: #F0F7EE;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    padding-top: 3.7%;
+    text-align: center;
+}
+
+.footerParagraph>a {
+    color: #DC0073;
+    text-decoration-line: none;
+}
