@@ -2,6 +2,7 @@
 const checkButton = document.querySelector('.btn-custom.check');
 const restartButton = document.querySelector('.btn-custom.restart');
 const gameInputContainer = document.querySelector('.gameInputContainer');
+let wordToGuess = null;
 
 // Definition of Word Array
 const words = ['გემი', 'მანქანა', 'დედა', 'ტელეფონი', 'ზარი', 'ქალაქი', 'სოფელი'];
@@ -49,3 +50,19 @@ function placeHints(word, count) {
         }
     }
 }
+
+// This function is used to get everything ready for the user to play the round
+function prepareRound() {
+    wordToGuess = selectRandomWord();
+    fillInputContainer(wordToGuess.length);
+
+    // This conditional places different numbers of hints based on the word's length
+    if (wordToGuess.length <= 5) {
+        placeHints(wordToGuess, 1);
+    }
+    else {
+        placeHints(wordToGuess, 2);
+    }
+}
+
+prepareRound(); // It is called for the web application startup
