@@ -13,3 +13,17 @@ function selectRandomWord() {
 
     return words[randomIndex];
 }
+
+// This function replaces old inputBoxes with new ones, where their count is dictated by
+// count propery
+function fillInputContainer(length) {
+    gameInputContainer.replaceChildren(); // Removes old inputBoxes
+
+    // Creates and appends inputBoxes in the gameInputContainer
+    for (let i = 0; i < length; i++) {
+        const inputBox = document.createElement('input');
+        inputBox.setAttribute('type', 'text');
+        inputBox.classList.add('inputBox');
+        gameInputContainer.appendChild(inputBox);
+    }
+}
