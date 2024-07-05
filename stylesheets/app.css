@@ -32,6 +32,18 @@ body {
     text-decoration-line: none;
 }
 
+.footerParagraph>a:hover {
+    color: hsl(328.64, 100%, 35.1%);
+}
+
+.footerParagraph>a:active {
+    color: hsl(328.64, 100%, 25.69%);
+}
+
+.footerParagraph>a, .footerParagraph>a:hover, .footerParagraph>a:active {
+    transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 h1 {
     font-family: "Big Shoulders Display", sans-serif;
     font-size: 63px;
@@ -76,6 +88,14 @@ h1 {
     text-align: center;
 }
 
+.inputBox[class="inputBox"]:hover {
+    border-color: #DC0073;
+}
+
+.inputBox, .inputBox[class="inputBox"]:hover {
+    transition: border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .inputBox.filled {
     background-color: rgba(132, 132, 132, 0.79)
 }
@@ -98,12 +118,33 @@ h1 {
     border: none;
 }
 
+.btn-custom.check, .btn-custom.restart, .btn-custom.check:hover, .btn-custom.restart:hover,
+.btn-custom.check:active, .btn-custom.restart:active {
+    transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .btn-custom.check {
     background-color: #DC0073;
 }
 
+.btn-custom.check:hover {
+    background-color: hsl(328.64, 100%, 35.1%);
+}
+
+.btn-custom.check:active {
+    background-color: hsl(328.64, 100%, 25.69%);
+}
+
 .btn-custom.restart {
     background-color: #D5202C;
+}
+
+.btn-custom.restart:hover {
+    background-color: hsl(356.02, 73.88%, 40.04%);
+}
+
+.btn-custom.restart:active {
+    background-color: hsl(356.02, 73.88%, 32.04%);
 }
 
 .buttonContainer {
