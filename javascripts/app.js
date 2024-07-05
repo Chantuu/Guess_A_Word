@@ -2,7 +2,11 @@
 const checkButton = document.querySelector('.btn-custom.check');
 const restartButton = document.querySelector('.btn-custom.restart');
 const gameInputContainer = document.querySelector('.gameInputContainer');
+const scoreSpan = document.querySelector('.score');
+
+// Game state variables
 let wordToGuess = null;
+let score = 0;
 
 // Definition of Word Array
 const words = ['გემი', 'მანქანა', 'დედა', 'ტელეფონი', 'ზარი', 'ქალაქი', 'სოფელი'];
@@ -53,7 +57,7 @@ function placeHints(word, count) {
 }
 
 // This function is used to get everything ready for the user to play the round
-function prepareRound() {
+function prepareRound(keepScore) {
     wordToGuess = selectRandomWord();
     fillInputContainer(wordToGuess.length);
 
@@ -63,6 +67,12 @@ function prepareRound() {
     }
     else {
         placeHints(wordToGuess, 2);
+    }
+
+    // This conditional effectively resets the score if keepScore argument is false
+    if (!keepScore) {
+        score = 0;
+        scoreSpan.innerText = score;
     }
 }
 
@@ -78,7 +88,11 @@ function playRound() {
 
     if (resultWord === wordToGuess) {
         alert("Congratulations! You successfully guessed the word!"); //TODO Announce win in modal element
-        prepareRound();
+        
+        score++;
+        scoreSpan.innerText = score;
+        
+        prepareRound(true); // Keeps the score
     }
     else {
         alert('Incorrect word! Please try again!'); //TODO Announce fail in banner element
@@ -86,6 +100,10 @@ function playRound() {
 }
 
 checkButton.addEventListener('click', playRound);
-restartButton.addEventListener('click', prepareRound); // Effectively restarts round
+restartButton.addEventListener('click', () => {
+    prepareRound(false);
+}); // Effectively restarts round
 
-prepareRound(); // It is called for the web application startup
+scoreSpan.innerText = score;
+
+prepareRound(true); // It is called for the web application startup
