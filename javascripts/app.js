@@ -53,6 +53,11 @@ function placeHints(word, count) {
 
             usedIndexes.push(randomIndex); // Current index is saved to the array for avoiding possible index duplication
         }
+        // This conditional ensures that in case of duplication run this method reqursively
+        // more time
+        else if (usedIndexes.indexOf(randomIndex) !== -1) {
+            placeHints(word, 1);
+        }
     }
 }
 
