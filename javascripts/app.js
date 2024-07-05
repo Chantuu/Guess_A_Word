@@ -27,3 +27,25 @@ function fillInputContainer(length) {
         gameInputContainer.appendChild(inputBox);
     }
 }
+
+// This function places hints. It uses word function as a guidance to where place the hint and count to
+// control how many hints should be placed
+function placeHints(word, count) {
+    const usedIndexes = []; // This array is used to check for possible index duplication
+
+    for (let i = 0; i < count; i++) {
+        const randomIndex = Math.floor(Math.random() * word.length);
+
+        // This conditional checks if function is placing first hint or generated random index
+        // has not been used previously
+        if (i === 0 || usedIndexes.indexOf(randomIndex) === -1) {
+            const inputBox = gameInputContainer.children[randomIndex];
+
+            inputBox.classList.add('filled'); // This greys out inputBox
+            inputBox.setAttribute('value', word[randomIndex]);
+            inputBox.toggleAttribute('disabled');
+
+            usedIndexes.push(randomIndex); // Current index is saved to the array for avoiding possible index duplication
+        }
+    }
+}
