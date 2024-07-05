@@ -24,7 +24,7 @@ Please change *Your_Name* text to your actual Github username.
 
 # Live Preview
 
- Live Preview will be available soon!
+ Live Preview is available [here.](https://chantuu.github.io/Guess_A_Word/)
  
  
 # Licensing
