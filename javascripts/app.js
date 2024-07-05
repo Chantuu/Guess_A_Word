@@ -24,6 +24,7 @@ function fillInputContainer(length) {
     for (let i = 0; i < length; i++) {
         const inputBox = document.createElement('input');
         inputBox.setAttribute('type', 'text');
+        inputBox.setAttribute('maxLength', '1');
         inputBox.classList.add('inputBox');
         gameInputContainer.appendChild(inputBox);
     }
