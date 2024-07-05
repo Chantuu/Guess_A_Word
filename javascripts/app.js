@@ -66,4 +66,25 @@ function prepareRound() {
     }
 }
 
+// This is main method, where the game logic is written
+function playRound() {
+    let resultWord = ''; // This string is used for storing word from inputBoxes
+    
+    // Retrieves letter from every inputBox and turns it into the word
+    for (let i = 0; i < gameInputContainer.children.length; i++) {
+        const inputBox = gameInputContainer.children[i];
+        resultWord += inputBox.value;
+    }
+
+    if (resultWord === wordToGuess) {
+        alert("Congratulations! You successfully guessed the word!"); //TODO Announce win in modal element
+        prepareRound();
+    }
+    else {
+        alert('Incorrect word! Please try again!'); //TODO Announce fail in banner element
+    }
+}
+
+checkButton.addEventListener('click', playRound);
+
 prepareRound(); // It is called for the web application startup
