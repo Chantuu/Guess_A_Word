@@ -50,7 +50,7 @@ h1 {
     gap: 51px;
 }
 
-.score {
+.scoreContainer {
     color: #000500;
     font-size: 23px;
     font-weight: 300;
