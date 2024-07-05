@@ -43,7 +43,7 @@ function placeHints(word, count) {
             const inputBox = gameInputContainer.children[randomIndex];
 
             inputBox.classList.add('filled'); // This greys out inputBox
-            inputBox.setAttribute('value', word[randomIndex]);
+            inputBox.value = word[randomIndex];
             inputBox.toggleAttribute('disabled');
 
             usedIndexes.push(randomIndex); // Current index is saved to the array for avoiding possible index duplication
