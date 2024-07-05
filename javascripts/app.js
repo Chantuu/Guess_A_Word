@@ -86,5 +86,6 @@ function playRound() {
 }
 
 checkButton.addEventListener('click', playRound);
+restartButton.addEventListener('click', prepareRound); // Effectively restarts round
 
 prepareRound(); // It is called for the web application startup
