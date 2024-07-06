@@ -34,6 +34,14 @@ function fillInputContainer(length) {
     }
 }
 
+function fillInputBox(word, randomIndex) {
+    const inputBox = gameInputContainer.children[randomIndex];
+
+    inputBox.classList.add('filled'); // This greys out inputBox
+    inputBox.value = word[randomIndex];
+    inputBox.disabled = true;
+}
+
 // This function places hints. It uses word function as a guidance to where place the hint and count to
 // control how many hints should be placed
 function placeHints(word, count) {
@@ -45,18 +53,25 @@ function placeHints(word, count) {
         // This conditional checks if function is placing first hint or generated random index
         // has not been used previously
         if (i === 0 || usedIndexes.indexOf(randomIndex) === -1) {
-            const inputBox = gameInputContainer.children[randomIndex];
-
-            inputBox.classList.add('filled'); // This greys out inputBox
-            inputBox.value = word[randomIndex];
-            inputBox.toggleAttribute('disabled');
+            fillInputBox(word, randomIndex);
 
             usedIndexes.push(randomIndex); // Current index is saved to the array for avoiding possible index duplication
         }
-        // This conditional ensures that in case of duplication run this method reqursively
-        // more time
-        else if (usedIndexes.indexOf(randomIndex) !== -1) {
-            placeHints(word, 1);
+    }
+
+    // This conditional checks, if filled inputBoxes cound is same to the supplied 'count' argument/
+    if (count > gameInputContainer.querySelectorAll('.inputBox.filled').length) {
+        // In case of missing filled inputBoxes, this code block executes and fills random
+        // inputBoxes, until their count reaches supplied argument 'count'
+        while (count > gameInputContainer.querySelectorAll('.inputBox.filled').length) {
+            const randomIndex = Math.floor(Math.random() * word.length);
+
+            // This conditional guards against the index duplication
+            if (usedIndexes.indexOf(randomIndex) === -1) {
+                fillInputBox(word, randomIndex);
+
+                usedIndexes.push(randomIndex);
+            }
         }
     }
 }
@@ -68,10 +83,10 @@ function prepareRound(keepScore) {
 
     // This conditional places different numbers of hints based on the word's length
     if (wordToGuess.length <= 5) {
-        placeHints(wordToGuess, 1);
+        placeHints(wordToGuess, 2);
     }
     else {
-        placeHints(wordToGuess, 2);
+        placeHints(wordToGuess, 3);
     }
 
     // This conditional effectively resets the score if keepScore argument is false
