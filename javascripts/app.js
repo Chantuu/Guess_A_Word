@@ -3,6 +3,8 @@ const checkButton = document.querySelector('.btn-custom.check');
 const restartButton = document.querySelector('.btn-custom.restart');
 const gameInputContainer = document.querySelector('.gameInputContainer');
 const scoreSpan = document.querySelector('.score');
+const successModal = document.querySelector('#successModal');
+const failModal = document.querySelector('#failModal');
 
 // Game state variables
 let wordToGuess = null;
@@ -92,7 +94,7 @@ function placeHints(word, count) {
 
 /**
  * This function is used to get everything ready for the user to play the round
- * @param {bool} keepScore - Tells the function to keep or reset the score (true: kept, false: reset)
+ * @param {boolean} keepScore - Tells the function to keep or reset the score (true: kept, false: reset)
  */
 function prepareRound(keepScore) {
     wordToGuess = selectRandomWord();
@@ -112,7 +114,6 @@ function prepareRound(keepScore) {
         scoreSpan.innerText = score;
     }
 }
-
 /** This is main method, where the game logic is written
  */
 function playRound() {
@@ -125,15 +126,17 @@ function playRound() {
     }
 
     if (resultWord === wordToGuess) {
-        alert("Congratulations! You successfully guessed the word!"); //TODO Announce win in modal element
-        
+        const modal = new bootstrap.Modal(successModal, { backdrop: true });
+        modal.show();
+
         score++;
         scoreSpan.innerText = score;
         
         prepareRound(true); // Keeps the score
     }
     else {
-        alert('Incorrect word! Please try again!'); //TODO Announce fail in banner element
+        const modal = new bootstrap.Modal(failModal, { backdrop: true });
+        modal.show();
     }
 }
 
