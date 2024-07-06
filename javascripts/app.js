@@ -12,15 +12,21 @@ let score = 0;
 const words = ['გემი', 'მანქანა', 'დედა', 'ტელეფონი', 'ზარი', 'ქალაქი', 'სოფელი'];
 
 
-// This function return random word from the 'words' array
+/**
+ * This function return random word from the 'words' array.
+ * 
+ * @returns string
+ */
 function selectRandomWord() {
     const randomIndex = Math.floor(Math.random() * words.length);
 
     return words[randomIndex];
 }
 
-// This function replaces old inputBoxes with new ones, where their count is dictated by
-// count propery
+/**
+ * This function replaces old inputBoxes with new ones
+ * @param {number} length - specifies how many inputBoxes should be created
+ */
 function fillInputContainer(length) {
     gameInputContainer.replaceChildren(); // Removes old inputBoxes
 
@@ -34,6 +40,11 @@ function fillInputContainer(length) {
     }
 }
 
+/**
+ * This helper function fills random inputBox with the correct letter.
+ * @param {string} word - specifies current word to be guessed
+ * @param {number} randomIndex - specifies which letter to take from supplied string
+ */
 function fillInputBox(word, randomIndex) {
     const inputBox = gameInputContainer.children[randomIndex];
 
@@ -42,8 +53,11 @@ function fillInputBox(word, randomIndex) {
     inputBox.disabled = true;
 }
 
-// This function places hints. It uses word function as a guidance to where place the hint and count to
-// control how many hints should be placed
+/**
+ * This function uses fillInputBox helper function to place the hints.
+ * @param {string} word - This is used as a guidance to randomly select letters and place hints accordingly.
+ * @param {number} count - How many hints are to be placed
+ */
 function placeHints(word, count) {
     const usedIndexes = []; // This array is used to check for possible index duplication
 
@@ -76,7 +90,10 @@ function placeHints(word, count) {
     }
 }
 
-// This function is used to get everything ready for the user to play the round
+/**
+ * This function is used to get everything ready for the user to play the round
+ * @param {bool} keepScore - Tells the function to keep or reset the score (true: kept, false: reset)
+ */
 function prepareRound(keepScore) {
     wordToGuess = selectRandomWord();
     fillInputContainer(wordToGuess.length);
@@ -96,7 +113,8 @@ function prepareRound(keepScore) {
     }
 }
 
-// This is main method, where the game logic is written
+/** This is main method, where the game logic is written
+ */
 function playRound() {
     let resultWord = ''; // This string is used for storing word from inputBoxes
     
@@ -124,6 +142,6 @@ restartButton.addEventListener('click', () => {
     prepareRound(false);
 }); // Effectively restarts round
 
-scoreSpan.innerText = score;
+scoreSpan.innerText = score; // Sets the score properly for startup
 
 prepareRound(true); // It is called for the web application startup
