@@ -117,6 +117,7 @@ function prepareRound(keepScore) {
         scoreSpan.innerText = score;
     }
 }
+
 /** This is main method, where the game logic is written
  */
 function playRound() {
@@ -143,11 +144,31 @@ function playRound() {
     }
 }
 
+/** This function implements a whitespace validation for inputBox. If whitespace is detected, it is automatically
+ * deleted.
+ * @param event This argument is used for targeting selected inputBox
+ */
+function inputBoxSpaceValidation(event) {
+    const targetInputBox = event.target; // Selecting targeted inputBox
+    if (targetInputBox.value.indexOf(' ')  !== -1) {
+        targetInputBox.value = ''; // Freeing up space for actual alphabet characters
+    }
+}
+
+// Game State Initialization
+scoreSpan.innerText = score; // Sets the score properly for startup
+prepareRound(true); // It is called for the web application startup
+
+
+// Button Functionality Initialization
 checkButton.addEventListener('click', playRound);
 restartButton.addEventListener('click', () => {
     prepareRound(false);
 }); // Effectively restarts round
 
-scoreSpan.innerText = score; // Sets the score properly for startup
 
-prepareRound(true); // It is called for the web application startup
+// InputBox Whitespace Validation Setup
+for (let inputBox of gameInputContainer.children) {
+    inputBox.addEventListener('input', inputBoxSpaceValidation);
+}
+
